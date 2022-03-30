@@ -1,0 +1,119 @@
+name: MyTumblr
+options:
+  bundleIdPrefix: dev.jano.mytumblr
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: 15.4
+    
+settings:
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
+    DEVELOPMENT_TEAM: PPSF6CNP8Q
+
+packages:
+
+  APIClient:
+    url: git@github.com:janodevorg/APIClient.git
+    branch: main
+
+  AutoLayout:
+    url: git@github.com:janodevorg/AutoLayout.git
+    branch: main
+    
+  CodableHelpers:
+    url: git@github.com:janodevorg/CodableHelpers.git
+    branch: main
+  
+  Coordinator:
+    url: git@github.com:janodevorg/Coordinator.git
+    branch: main
+    
+  CoreDataStack:
+    url: git@github.com:janodevorg/CoreDataStack.git
+    branch: main
+
+  Dependency:
+    url: git@github.com:janodevorg/Dependency.git
+    branch: main
+
+  Keychain:
+    url: git@github.com:janodevorg/Keychain.git
+    branch: main
+        
+  Kit:
+    url: git@github.com:janodevorg/Kit.git
+    branch: main
+
+  OAuth2:
+    url: git@github.com:janodevorg/OAuth2.git
+    branch: main
+
+  Report:
+    url: git@github.com:janodevorg/Report.git
+    branch: main
+
+  TumblrNPF:
+    url: git@github.com:janodevorg/TumblrNPF.git
+    branch: main
+    
+  TumblrNPFPersistence:
+    url: git@github.com:janodevorg/TumblrNPFPersistence.git
+    branch: main
+
+targets:
+
+  MyTumblr:
+    dependencies:
+      - package: APIClient
+      - package: AutoLayout
+      - package: CodableHelpers
+      - package: Coordinator
+      - package: CoreDataStack
+      - package: Dependency
+      - package: Keychain
+      - package: Kit
+      - package: OAuth2
+      - package: Report
+      - package: TumblrNPF
+      - package: TumblrNPFPersistence
+    type: framework
+    platform: iOS
+    postCompileScripts:
+      - script: swiftlint
+        name: Swiftlint
+    scheme:
+      testTargets:
+         - name: MyTumblrTests
+           parallelizable: true
+           randomExecutionOrder: true
+    settings:
+       CURRENT_PROJECT_VERSION: 1
+       INFOPLIST_FILE: targets/main/Info.plist
+       IPHONEOS_DEPLOYMENT_TARGET: 15.4
+       PRODUCT_BUNDLE_IDENTIFIER: dev.jano.mytumblr
+       PRODUCT_NAME: MyTumblr
+    sources: 
+       - sources/main
+    type: framework
+
+  MyTumblrTests:
+    dependencies:
+      - target: MyTumblr
+    type: bundle.unit-test
+    platform: iOS
+    scheme:
+      gatherCoverageData: true
+      commandLineArguments: 
+          "--unit-testing": true
+      testTargets: 
+        - name: MyTumblrTests
+          parallelizable: true
+          randomExecutionOrder: true
+    settings:
+      INFOPLIST_FILE: targets/tests/Info.plist
+      IPHONEOS_DEPLOYMENT_TARGET: 15.4
+      PRODUCT_BUNDLE_IDENTIFIER: dev.jano.mytumblr.tests
+    sources:
+      - sources/tests
