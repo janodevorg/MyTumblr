@@ -51,16 +51,15 @@ extension HomeDomain: Interactable {
                     try await logout()
                 case .viewDidAppear:
 
-                    // try await output?(.sections(hardcodedBlog(identifier: "swift-index-one.json")))
-                    Task {
-                        try await Task.sleep(nanoseconds: UInt64(2e+9))
-                        do {
-                            try await output?(.sections(hardcodedBlog(identifier: "swift-index-onePost")))
-                        } catch {
-                            log.error("\(String(describing: error))")
-                        }
-                    }
-                    // try await output?(.sections(blog(identifier: "swift-index")))
+//                    Task {
+//                        try await Task.sleep(nanoseconds: UInt64(2e+9))
+//                        do {
+//                            try await output?(.sections(hardcodedBlog(identifier: "swift-index-all")))
+//                        } catch {
+//                            log.error("\(String(describing: error))")
+//                        }
+//                    }
+                    try await output?(.sections(blog(identifier: "swift-index")))
 //                    try await output?(.sections(recommendedBlogs()))
 //                     try await output?(.sections(twoPostsWithBigImages()))
                     // try await output?(.sections(onePostsWithBigImages()))

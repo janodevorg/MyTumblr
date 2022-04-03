@@ -126,7 +126,12 @@ enum PostToViewModelMapper
         switch content {
         case .audio(let audio): return Item.audio(ViewModel(id: id, content: audio))
         case .image(let image): return Item.image(ViewModel(id: id, content: image))
-        case .link(let link): return Item.link(ViewModel(id: id, content: link))
+        case .link(let link):
+            guard link.isValid else {
+                log.warning("Elements without title or poster images are not supported. Skipping: \(String(describing: link))")
+                return nil
+            }
+            return Item.link(ViewModel(id: id, content: link))
         case .paywall(let paywall): return Item.paywall(ViewModel(id: id, content: paywall))
         case .text(let text): return Item.text(ViewModel(id: id, content: text))
         case .video(let video): return Item.video(ViewModel(id: id, content: video))
@@ -139,5 +144,14 @@ enum PostToViewModelMapper
         case .audio, .link, .paywall: return false
         default: return true
         }
+    }
+}
+
+private extension LinkContent {
+    var isValid: Bool {
+        guard let title = title, let poster = poster, !title.isEmpty, !poster.isEmpty else {
+            return false
+        }
+        return true
     }
 }
