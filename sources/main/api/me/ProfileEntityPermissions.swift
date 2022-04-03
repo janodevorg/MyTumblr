@@ -3,14 +3,14 @@ import Foundation
 
 public struct ProfileEntityPermissions: Codable, Equatable {
     
-    public var canManagePeople: Bool?
-    public var hasAccessToNewProjects: Bool?
-    public var canAddProjects: Bool?
-    public var canManagePortfolio: Bool?
     public var administrator: Bool?
-    public var canAccessTemplates: Bool?
-    public var canAccessPortfolio: Bool?
     public var canAccessCalendar: Bool?
+    public var canAccessPortfolio: Bool?
+    public var canAccessTemplates: Bool?
+    public var canAddProjects: Bool?
+    public var canManagePeople: Bool?
+    public var canManagePortfolio: Bool?
+    public var hasAccessToNewProjects: Bool?
 
     enum CodingKeys: String, CodingKey {
         

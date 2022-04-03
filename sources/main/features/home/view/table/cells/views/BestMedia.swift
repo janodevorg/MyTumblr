@@ -4,10 +4,8 @@ import TumblrNPF
 import UIKit
 
 /// Represents a media object suitable for a particular viewport.
-struct BestMedia
+struct BestMedia: Equatable
 {
-    @Dependency private var log: Logger
-
     /// URL of the media object.
     let url: URL
 
@@ -41,7 +39,13 @@ struct BestMedia
        - viewport: Size of the final image.
      - Returns: Best fitting image for the given viewport.
     */
-    private static func biggestImageSmallerThanViewport(images: [MediaObject], viewport: CGSize) -> MediaObject? {
+    private static func biggestImageSmallerThanViewport(images: [MediaObject], viewport: CGSize) -> MediaObject?
+    {
+        let log = DependencyContainer.resolve() as Logger
+        guard !images.isEmpty else {
+            log.warning("No images available.")
+            return nil
+        }
 
         let scaledViewport = CGSize(
             width: viewport.width * UIScreen.main.scale,
@@ -57,7 +61,19 @@ struct BestMedia
             media.size.flatMap { $0 <= windowSize } ?? false
         }
 
-        return biggestImageSmallerThanWindow
+        if biggestImageSmallerThanWindow == nil {
+            let sizes = images.compactMap {
+                guard let size = $0.size else { return nil }
+                return "\(String(describing: size))"
+            }.joined(separator: ",")
+            (DependencyContainer.resolve() as Logger).trace("""
+            No image smaller than \(String(describing: windowSize))
+                images: \(String(describing: sizes))
+                returning: \(String(describing: images.last?.size ?? CGSize.zero))
+            """)
+        }
+
+        return biggestImageSmallerThanWindow ?? images.first
     }
 }
 

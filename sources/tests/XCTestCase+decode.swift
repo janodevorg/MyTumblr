@@ -4,11 +4,13 @@ import XCTest
 
 extension XCTestCase
 {
-    func decode<T: Decodable>(filename: String) -> T? {
-        guard let url = Bundle.module.url(forResource: filename, withExtension: nil),
+    func decode<T: Decodable>(filename: String, ext: String = "json") -> T?
+    {
+        let bundle = Bundle.module
+        guard let url = bundle.url(forResource: filename, withExtension: ext),
             let jsonData = try? Data(contentsOf: url) else {
-                XCTFail("Missing \(filename) on Bundle.module: \(Bundle.module)")
-                return nil
+            XCTFail("Missing \"\(filename).\(ext)\" on bundle: \(bundle.bundlePath)")
+            return nil
         }
         do {
             return try JSONDecoder().decode(T.self, from: jsonData)

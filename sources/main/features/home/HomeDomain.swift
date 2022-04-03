@@ -29,7 +29,7 @@ struct HomeDomain
 
     /// Posts for specific blog
     func hardcodedBlog(identifier: String) async throws -> [Section] {
-        let posts: [Post] = try await repository.hardcodedBlog(identifier: identifier)
+        let posts: [Post] = try await repository.hardcodedBlog(filename: identifier, ext: "json")
         return posts.map { PostToViewModelMapper.map($0) }
     }
 

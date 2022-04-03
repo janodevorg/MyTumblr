@@ -10,7 +10,7 @@ import TumblrNPFPersistence
 
 public enum Constants {
     static let keychainAccount = "tumblr"
-    static let keychainAccessGroup = "dev.jano.tumblr"
+    static let keychainAccessGroup = "PPSF6CNP8Q.dev.jano.tumblr" // matches $(AppIdentifierPrefix).dev.jano.tumblr
     static let coreDataModel = "DataModel"
 }
 

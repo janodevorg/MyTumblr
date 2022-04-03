@@ -5,3 +5,8 @@ protocol ManualLayout {
     /// Returns the height of this view when configured with a given item and viewport.
     static func height(item: Item, viewport: CGSize) -> CGFloat
 }
+
+protocol CalculatedManualLayout {
+    /// Returns the height of this view when configured with a given item and viewport.
+    func height(item: Item, viewport: CGSize) -> CGFloat
+}

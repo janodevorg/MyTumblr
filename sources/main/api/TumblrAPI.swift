@@ -14,40 +14,6 @@ final class TumblrAPI: APIClient
         self.isStoringDecodingErrors = true
     }
 
-    /**
-     Parse an API response.
-
-     An API response is like a regular HTTP response, except:
-       - API responses may contain an API error coded as JSON
-       - API responses never return nil data, all responses are coded as JSON.
-
-     Throws:
-      - APIClientError.invalidResponseEmpty
-      - APIClientError.JSONDecodingFailure
-      - APIClientError.other
-      - APIClientError.statusErrorAPI
-      - APIClientError.statusErrorHTTP
-    */
-    private func parse<T: Codable>(data: Data?, response: HTTPURLResponse) throws -> TumblrResponse<T> {
-
-        guard let data = data else {
-            throw APIClientError.invalidResponseEmpty
-        }
-
-        let apiResponse: TumblrResponse<T> = try decode(jsonData: data)
-
-        guard HTTPStatus(code: apiResponse.meta.status)?.isError == false else {
-            log.error("\(apiResponse.description)")
-            throw APIClientError.statusErrorAPI(response.statusCode)
-        }
-
-        guard HTTPStatus(code: response.statusCode)?.isError == false else {
-            throw APIClientError.statusErrorHTTP(response.statusCode)
-        }
-
-        return apiResponse
-    }
-
     // MARK: - Endpoints
 
     /// Returns recommended blogs.
@@ -116,5 +82,41 @@ final class TumblrAPI: APIClient
             decode: { data, response in
                 try self.parse(data: data, response: response)
             })
+    }
+
+    // MARK: - Parse
+
+    /**
+     Parse an API response.
+
+     An API response is like a regular HTTP response, except:
+       - API responses may contain an API error coded as JSON
+       - API responses never return nil data, all responses are coded as JSON.
+
+     Throws:
+      - APIClientError.invalidResponseEmpty
+      - APIClientError.JSONDecodingFailure
+      - APIClientError.other
+      - APIClientError.statusErrorAPI
+      - APIClientError.statusErrorHTTP
+    */
+    private func parse<T: Codable>(data: Data?, response: HTTPURLResponse) throws -> TumblrResponse<T> {
+
+        guard let data = data else {
+            throw APIClientError.invalidResponseEmpty
+        }
+
+        let apiResponse: TumblrResponse<T> = try decode(jsonData: data)
+
+        guard HTTPStatus(code: apiResponse.meta.status)?.isError == false else {
+            log.error("\(apiResponse.description)")
+            throw APIClientError.statusErrorAPI(response.statusCode)
+        }
+
+        guard HTTPStatus(code: response.statusCode)?.isError == false else {
+            throw APIClientError.statusErrorHTTP(response.statusCode)
+        }
+
+        return apiResponse
     }
 }

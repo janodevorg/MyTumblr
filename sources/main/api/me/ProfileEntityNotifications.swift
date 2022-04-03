@@ -3,18 +3,18 @@ import Foundation
 
 public struct ProfileEntityNotifications: Codable, Equatable {
     
-    public var receiveMyNotificationsOnly: Bool?
-    public var receiveDailyReportsAtWeekend: Bool?
-    public var receiveDailyReportsAtTime: String?
-    public var soundAlertsEnabled: Bool?
+    public var dailyReportDaysFilter: String?
+    public var dailyReportSortBy: String?
     public var notifyOnAddedAsAFollower: Bool?
     public var notifyOnStatusUpdate: Bool?
-    public var dailyReportSortBy: String?
     public var notifyOnTaskComplete: Bool?
-    public var dailyReportDaysFilter: String?
-    public var receiveNotifyWarnings: Bool?
     public var receiveDailyReports: Bool?
+    public var receiveDailyReportsAtTime: String?
+    public var receiveDailyReportsAtWeekend: Bool?
     public var receiveDailyReportsIfEmpty: Bool?
+    public var receiveMyNotificationsOnly: Bool?
+    public var receiveNotifyWarnings: Bool?
+    public var soundAlertsEnabled: Bool?
 
     enum CodingKeys: String, CodingKey {
         

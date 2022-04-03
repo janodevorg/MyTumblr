@@ -1,9 +1,9 @@
 import Foundation
 
 public struct ProfileResponse: Decodable {
-    
-    var status: String?
+
     var profile: ProfileEntity
+    var status: String?
     
     enum CodingKeys: String, CodingKey {
         

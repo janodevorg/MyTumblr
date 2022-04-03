@@ -1,17 +1,6 @@
 # Overview
 
-Overview documentation for the project.
-
-## Launch
-
-![Launch](launch.png)
-
-A main file 
-
-- registers dependencies
-- chooses a real or testing app delegate
-
-The testing delegate is a NSObject subclass with a window variable.  
+Overview documentation for the project.  
 
 ## Start
 
@@ -26,7 +15,37 @@ MainCoordinator is a coordinator of coordinators.
 
 ![Home](home.png)
 
-- HomeDomain: features.
-- HomeViewController: view.
+Home feature
+- HomeViewController: displays posts and offers logout.
+- HomeDomain: requests posts and logs out.
+- HomeRepository: request and persist posts.
 
 ![TableViewController](tableViewController.png)
+
+## API
+
+![TumblrAPI](TumblrAPI.png)
+
+All responses are wrapped in a TumblrResponse object.
+
+![TumblrResponse](TumblrResponse.png)
+
+The response object is a Codable object on success or an empty array on error. For instance, an authorization error is:
+```json
+{
+    "meta": {
+        "status": 401,
+        "msg": "Unauthorized"
+    },
+    "response": [
+
+    ],
+    "errors": [
+        {
+            "title": "Unauthorized",
+            "code": 1017,
+            "detail": "Unable to authorize"
+        }
+    ]
+}
+```

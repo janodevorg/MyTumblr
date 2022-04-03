@@ -19,6 +19,8 @@ struct TumblrResponse<T: Codable & Hashable>: Error, Codable, CustomStringConver
         return string
     }
 
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case meta
         case errors

@@ -72,7 +72,15 @@ enum PostToViewModelMapper
         items.append(contentsOf: [tags])
         items.append(contentsOf: [note])
 
-        return items.compactMap { $0 }
+        return items
+//            .filter { item in
+//                if case .link = item {
+//                    return true
+//                } else {
+//                    return false
+//                }
+//            }
+            .compactMap { $0 }
     }
 
     private static func layOutBlocks(blocks: [Item], layouts: [Layout]) -> [Item]?

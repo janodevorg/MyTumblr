@@ -13,10 +13,12 @@ struct HomeRepository
     @Dependency private var persistence: PersistentContainer
     @Dependency private var tumblrClient: TumblrAPI
 
-    func hardcodedBlog(identifier: String) async throws -> [Post]
+    func hardcodedBlog(filename: String, ext: String) async throws -> [Post]
     {
         #warning("testing")
-        let url = Bundle.module.url(forResource: identifier, withExtension: nil)! // swiftlint:disable:this force_unwrapping
+        let bundle = Bundle.module
+        log.debug("bundle.bundlePath: \(bundle.bundlePath)")
+        let url = bundle.url(forResource: filename, withExtension: ext)! // swiftlint:disable:this force_unwrapping
         let data = try Data(contentsOf: url)
 
         // save API to database

@@ -3,17 +3,17 @@ import Foundation
 
 public struct ProfileEntityLocalization: Codable, Equatable {
     
-    public var timeFormat: String?
-    public var languageCode: String?
-    public var language: String?
-    public var timezoneUTCOffsetMins: String?
-    public var timezoneId: String?
-    public var timezoneString: String?
-    public var dateFormatId: String?
-    public var startOnSunday: Bool?
     public var dateFormat: String?
-    public var timezoneJavaRefCode: String?
+    public var dateFormatId: String?
+    public var language: String?
+    public var languageCode: String?
+    public var startOnSunday: Bool?
+    public var timeFormat: String?
     public var timeFormatId: String?
+    public var timezoneId: String?
+    public var timezoneJavaRefCode: String?
+    public var timezoneString: String?
+    public var timezoneUTCOffsetMins: String?
  
     enum CodingKeys: String, CodingKey {
         

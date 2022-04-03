@@ -23,6 +23,7 @@ let package = Package(
         .package(url: "git@github.com:janodevorg/OAuth2.git", branch: "main"),
         .package(url: "git@github.com:janodevorg/Report.git", branch: "main"),
         .package(url: "git@github.com:janodevorg/TumblrNPF.git", branch: "main"),
+        // .package(path: "../TumblrNPF"),
         .package(url: "git@github.com:janodevorg/TumblrNPFPersistence.git", branch: "main"),
         .package(url: "git@github.com:apple/swift-docc-plugin.git", from: "1.0.0")
     ],
@@ -53,8 +54,7 @@ let package = Package(
                 .copy("resources/fonts/Gibson-regular.ttf"),
                 .copy("resources/fonts/Gibson-regularitalic.ttf"),
                 .copy("resources/fonts/RugeBoogie-Regular.ttf"),
-                .copy("resources/hardcoded/swift-index-all.json"),
-                .copy("resources/hardcoded/swift-index-one.json")
+                .process("resources/hardcoded-posts")
             ]
         ),
         .testTarget(
@@ -65,13 +65,7 @@ let package = Package(
             ],
             path: "sources/tests",
             resources: [
-                .copy("resources/401.json"),
-                .copy("resources/APIError.json"),
-                .copy("resources/swift-index.json"),
-                .copy("resources/tumblr1.json"),
-                .copy("resources/tumblr2.json"),
-                .copy("resources/tumblr3.json"),
-                .copy("resources/blogByIdentifier.json")
+                .process("resources")
             ]
         )
     ]

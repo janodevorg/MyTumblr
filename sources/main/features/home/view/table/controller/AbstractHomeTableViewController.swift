@@ -82,7 +82,8 @@ class AbstractHomeTableViewController: UIViewController, UITableViewDataSourcePr
 
     func dequeue(tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell
     {
-        @MainActor func dequeue<T: Configurable>(type: TableViewCell<T>.Type, id: String) -> UITableViewCell {
+        @MainActor func dequeue<T: Configurable>(type: TableViewCell<T>.Type, id: String) -> UITableViewCell
+        {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as? TableViewCell<T> else {
                 (DependencyContainer.resolve() as Logger).error("Wrong cell dequeued for \(id)")
                 return UITableViewCell()
@@ -94,10 +95,8 @@ class AbstractHomeTableViewController: UIViewController, UITableViewDataSourcePr
                     self.log.debug("Table layout updated.")
                 }
             }
-            var tableSize = tableView.bounds.size
-            tableSize.height -= 46 /* nav bar height */
 
-            cell.configure(item, viewport: tableSize, updateLayout: updateLayout)
+            cell.configure(item, viewport: visibleTableSize, updateLayout: updateLayout)
             return cell
         }
 
@@ -139,15 +138,24 @@ class AbstractHomeTableViewController: UIViewController, UITableViewDataSourcePr
         cacheHeight = [IndexPath: CGFloat]() /* reset calculated cell heights */
     }
 
+    var visibleTableSize: CGSize {
+        var tableSize = tableView.bounds.size
+        tableSize.height -= 46 /* nav bar height */
+        return tableSize
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let item = sections[indexPath.section].items[indexPath.row]
+        let viewport = visibleTableSize
         switch item {
         case .image:
-            return ImageContentView.height(item: item, viewport: tableView.frame.size)
+            return ImageContentView.height(item: item, viewport: viewport)
         case .link:
-            return LinkContentView.height(item: item, viewport: tableView.frame.size)
+            let rendering = LinkContentRendering.create(item: item, viewport: viewport)
+            let height = rendering?.intrinsicContentSize.height ?? 0
+            return height
         case .rows:
-            return RowsLayoutView.height(item: item, viewport: tableView.frame.size)
+            return RowsLayoutView.height(item: item, viewport: viewport)
         default:
             return cacheHeight[indexPath] ?? UITableView.automaticDimension
         }
@@ -164,6 +172,7 @@ class AbstractHomeTableViewController: UIViewController, UITableViewDataSourcePr
 //    }
 
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("Caching row \(indexPath.row) height: \(cell.bounds.size.height)")
         cacheHeight[indexPath] = cell.bounds.size.height
     }
 }

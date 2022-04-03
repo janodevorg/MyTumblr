@@ -10,19 +10,19 @@ final class RecommendedBlogsTests: XCTestCase
 
     func testTumblr1() throws
     {
-        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr1.json")
+        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr1")
         XCTAssertNotNil(blogs)
     }
 
     func testTumblr2() throws
     {
-        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr2.json")
+        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr2")
         XCTAssertNotNil(blogs)
     }
 
     func testTumblr3() throws
     {
-        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr3.json")
+        let blogs: TumblrResponse<BlogsPage>? = decode(filename: "tumblr3")
         XCTAssertNotNil(blogs)
     }
 
@@ -34,7 +34,7 @@ final class RecommendedBlogsTests: XCTestCase
 
     func testAPIError() throws
     {
-        let blogs: TumblrResponse<[BlogsPage]>? = decode(filename: "APIError.json")
+        let blogs: TumblrResponse<[BlogsPage]>? = decode(filename: "APIError")
         XCTAssertNotNil(blogs)
     }
 }

@@ -10,7 +10,7 @@ final class TumblrAPIResponseTests: XCTestCase
     private let log = Logger(subsystem: "dev.jano", category: "apptests")
 
     func testTumblrAPIResponse() {
-        guard let response: TumblrResponse<BlogsPage> = decode(filename: "401.json") else {
+        guard let response: TumblrResponse<BlogsPage> = decode(filename: "401") else {
             XCTFail("Decoding failed.")
             return
         }
