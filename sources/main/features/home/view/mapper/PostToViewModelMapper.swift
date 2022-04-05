@@ -85,6 +85,10 @@ enum PostToViewModelMapper
 
     private static func layOutBlocks(blocks: [Item], layouts: [Layout]) -> [Item]?
     {
+        guard !layouts.isEmpty else {
+            return blocks
+        }
+
         guard let firstLayout: Layout = layouts.first, layouts.count == 1 else {
             log.warning("Only one layout is supported, got \(String(describing: layouts.count)). Returning original blocks.")
             return blocks
@@ -125,7 +129,8 @@ enum PostToViewModelMapper
     private static func createContentBlocks(id: String, content: Content) -> Item? {
         switch content {
         case .audio(let audio): return Item.audio(ViewModel(id: id, content: audio))
-        case .image(let image): return Item.image(ViewModel(id: id, content: image))
+        case .image(let image):
+            return Item.image(ViewModel(id: id, content: image))
         case .link(let link):
             guard link.isValid else {
                 log.warning("Elements without title or poster images are not supported. Skipping: \(String(describing: link))")
@@ -149,6 +154,7 @@ enum PostToViewModelMapper
 
 private extension LinkContent {
     var isValid: Bool {
+        // TO DO: ignoring elements without title or image - view needs more work
         guard let title = title, let poster = poster, !title.isEmpty, !poster.isEmpty else {
             return false
         }
