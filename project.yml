@@ -16,51 +16,51 @@ packages:
 
   APIClient:
     url: git@github.com:janodevorg/APIClient.git
-    branch: main
+    from: 1.0.0
 
   AutoLayout:
     url: git@github.com:janodevorg/AutoLayout.git
-    branch: main
+    from: 1.0.0
     
   CodableHelpers:
     url: git@github.com:janodevorg/CodableHelpers.git
-    branch: main
+    from: 1.0.0
   
   Coordinator:
     url: git@github.com:janodevorg/Coordinator.git
-    branch: main
+    from: 1.0.0
     
   CoreDataStack:
     url: git@github.com:janodevorg/CoreDataStack.git
-    branch: main
+    from: 1.0.0
 
   Dependency:
     url: git@github.com:janodevorg/Dependency.git
-    branch: main
+    from: 1.0.0
 
   Keychain:
     url: git@github.com:janodevorg/Keychain.git
-    branch: main
+    from: 1.0.0
         
   Kit:
     url: git@github.com:janodevorg/Kit.git
-    branch: main
+    from: 1.0.0
 
   OAuth2:
     url: git@github.com:janodevorg/OAuth2.git
-    branch: main
+    from: 1.0.0
 
   Report:
     url: git@github.com:janodevorg/Report.git
-    branch: main
+    from: 1.0.0
 
   TumblrNPF:
     url: git@github.com:janodevorg/TumblrNPF.git
-    branch: main
+    from: 1.0.0
     
   TumblrNPFPersistence:
     url: git@github.com:janodevorg/TumblrNPFPersistence.git
-    branch: main
+    from: 1.0.0
 
 targets:
 
