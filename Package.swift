@@ -8,8 +8,8 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "MyTumblr", type: .dynamic, targets: ["MyTumblr"]),
-        .library(name: "MyTumblrStatic", type: .static, targets: ["MyTumblr"])
+        .library(name: "MyTumblr", type: .static, targets: ["MyTumblr"]),
+        .library(name: "MyTumblrStatic", type: .dynamic, targets: ["MyTumblr"])
     ],
     dependencies: [
         .package(url: "git@github.com:janodevorg/APIClient.git", from: "1.0.0"),
@@ -36,7 +36,7 @@ let package = Package(
                 .product(name: "AutoLayout", package: "AutoLayout"),
                 .product(name: "CodableHelpers", package: "CodableHelpers"),
                 .product(name: "Coordinator", package: "Coordinator"),
-                .product(name: "CoreDataStack", package: "CoreDataStack"),
+                .product(name: "CoreDataStackDynamic", package: "CoreDataStack"),
                 .product(name: "Dependency", package: "Dependency"),
                 .product(name: "ImageCache", package: "ImageCache"),
                 .product(name: "Keychain", package: "Keychain"),

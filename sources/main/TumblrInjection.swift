@@ -3,6 +3,7 @@ import Coordinator
 import CoreDataStack
 import Dependency
 import Foundation
+import ImageCache
 import Kit
 import OAuth2
 import os

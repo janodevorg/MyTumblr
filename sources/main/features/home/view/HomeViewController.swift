@@ -1,4 +1,5 @@
 import Dependency
+import ImageCache
 import Kit
 import os
 import UIKit

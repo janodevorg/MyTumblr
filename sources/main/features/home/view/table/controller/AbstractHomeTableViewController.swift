@@ -1,7 +1,8 @@
 import Dependency
+import ImageCache
 import Kit
 import os
-@preconcurrency import UIKit
+import UIKit
 
 /**
  A table view controller minus the data source.

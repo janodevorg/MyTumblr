@@ -1,5 +1,6 @@
 import AutoLayout
 import Dependency
+import ImageCache
 import Kit
 import os
 import TumblrNPF
