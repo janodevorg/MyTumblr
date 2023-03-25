@@ -30,12 +30,16 @@ packages:
     url: git@github.com:janodevorg/Coordinator.git
     from: 1.0.0
     
-  CoreDataStack:
+  CoreDataStackDynamic:
     url: git@github.com:janodevorg/CoreDataStack.git
     from: 1.0.0
 
   Dependency:
     url: git@github.com:janodevorg/Dependency.git
+    from: 1.0.0
+    
+  ImageCache:
+    url: git@github.com:janodevorg/ImageCache.git
     from: 1.0.0
 
   Keychain:
@@ -70,8 +74,9 @@ targets:
       - package: AutoLayout
       - package: CodableHelpers
       - package: Coordinator
-      - package: CoreDataStack
+      - package: CoreDataStackDynamic
       - package: Dependency
+      - package: ImageCache
       - package: Keychain
       - package: Kit
       - package: OAuth2

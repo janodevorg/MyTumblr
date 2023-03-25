@@ -27,16 +27,16 @@ final class HeaderView: UIView, Configurable
     )
 
     private lazy var moreAction = UIAction(
-        title: "",
-        image: UIImage(systemName: "ellipsis")
-    ){ [weak self] _ in self?.didPressMore() }
+            title: "",
+            image: UIImage(systemName: "ellipsis")
+        ) { [weak self] _ in self?.didPressMore() }
 
     private lazy var follow = UIButton(
         configuration: UIButton.Configuration.plain(),
         primaryAction: followAction
     )
 
-    private lazy var followAction = UIAction(title: ""){ [weak self] _ in self?.didPressFollow() }
+    private lazy var followAction = UIAction(title: "") { [weak self] _ in self?.didPressFollow() }
 
     private let separator = UIView().configure {
         $0.backgroundColor = .lightGray

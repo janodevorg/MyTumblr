@@ -65,7 +65,9 @@ struct BestMedia: Equatable
             let sizes = images.compactMap {
                 guard let size = $0.size else { return nil }
                 return "\(String(describing: size))"
-            }.joined(separator: ",")
+            }
+            .joined(separator: ",")
+            
             (DependencyContainer.resolve() as Logger).trace("""
             No image smaller than \(String(describing: windowSize))
                 images: \(String(describing: sizes))

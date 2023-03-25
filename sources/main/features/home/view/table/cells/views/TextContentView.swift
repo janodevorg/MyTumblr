@@ -1,7 +1,7 @@
 import AutoLayout
 import Dependency
-import TumblrNPF
 import os
+import TumblrNPF
 import UIKit
 
 final class TextContentView: UIView, Configurable

@@ -113,4 +113,3 @@ final class LinkContentView: UIView, Configurable, Identifiable, ManualLayout
         linkContentRendering?.intrinsicContentSize ?? CGSize.zero
     }
 }
-

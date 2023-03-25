@@ -44,7 +44,12 @@ reporter: xcode
 #     - subscript
 #     - other_method
 #     - type_method
-    
+
+analyzer_rules:
+  - explicit_self
+  - unused_declaration
+  - unused_import
+
 disabled_rules:
   - conditional_returns_on_newline
   - discouraged_optional_collection
@@ -108,7 +113,7 @@ opt_in_rules:
   - explicit_acl
   - explicit_enum_raw_value
   - explicit_init
-  - explicit_self
+#  - explicit_self
   - explicit_top_level_acl
   - explicit_type_interface
   - extension_access_modifier
@@ -214,9 +219,9 @@ opt_in_rules:
   - unused_capture_list
   - unused_closure_parameter
   - unused_control_flow_label
-  - unused_declaration
+#  - unused_declaration
   - unused_enumerated
-  - unused_import
+#  - unused_import
   - unused_optional_binding
   - unused_setter_value
   - valid_ibinspectable
