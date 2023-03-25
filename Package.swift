@@ -34,7 +34,7 @@ let package = Package(
             dependencies: [
                 .product(name: "APIClient", package: "APIClient"),
                 .product(name: "AutoLayout", package: "AutoLayout"),
-                .product(name: "CodableHelpers", package: "CodableHelpers"),
+                .product(name: "CodableHelpersDynamic", package: "CodableHelpers"),
                 .product(name: "Coordinator", package: "Coordinator"),
                 .product(name: "CoreDataStackDynamic", package: "CoreDataStack"),
                 .product(name: "Dependency", package: "Dependency"),
@@ -43,7 +43,7 @@ let package = Package(
                 .product(name: "Kit", package: "Kit"),
                 .product(name: "OAuth2", package: "OAuth2"),
                 .product(name: "Report", package: "Report"),
-                .product(name: "TumblrNPF", package: "TumblrNPF"),
+                .product(name: "TumblrNPFDynamic", package: "TumblrNPF"),
                 .product(name: "TumblrNPFPersistence", package: "TumblrNPFPersistence")
             ],
             path: "sources/main",
@@ -63,7 +63,7 @@ let package = Package(
             name: "MyTumblrTests",
             dependencies: [
                 "MyTumblr",
-                .product(name: "CodableHelpers", package: "CodableHelpers")
+                .product(name: "CodableHelpersDynamic", package: "CodableHelpers")
             ],
             path: "sources/tests",
             resources: [
