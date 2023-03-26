@@ -14,7 +14,6 @@ let package = Package(
     dependencies: [
         .package(url: "git@github.com:janodevorg/APIClient.git", from: "1.0.0"),
         .package(url: "git@github.com:janodevorg/AutoLayout.git", from: "1.0.0"),
-        .package(url: "git@github.com:janodevorg/CodableHelpers.git", from: "1.0.0"),
         .package(url: "git@github.com:janodevorg/Coordinator.git", from: "1.0.0"),
         .package(url: "git@github.com:janodevorg/CoreDataStack.git", from: "1.0.0"),
         .package(url: "git@github.com:janodevorg/Dependency.git", from: "1.0.0"),
@@ -34,7 +33,6 @@ let package = Package(
             dependencies: [
                 .product(name: "APIClient", package: "APIClient"),
                 .product(name: "AutoLayout", package: "AutoLayout"),
-                .product(name: "CodableHelpersDynamic", package: "CodableHelpers"),
                 .product(name: "Coordinator", package: "Coordinator"),
                 .product(name: "CoreDataStackDynamic", package: "CoreDataStack"),
                 .product(name: "Dependency", package: "Dependency"),
@@ -62,8 +60,7 @@ let package = Package(
         .testTarget(
             name: "MyTumblrTests",
             dependencies: [
-                "MyTumblr",
-                .product(name: "CodableHelpersDynamic", package: "CodableHelpers")
+                "MyTumblr"
             ],
             path: "sources/tests",
             resources: [
